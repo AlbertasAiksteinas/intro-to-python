@@ -38,8 +38,8 @@ print("  " + my_dictionary["List"])
 # @TASK: Add a definition for a "Dictionary" to our
 # dictionary above by editing the code around line 21. Then
 # print out the value below.
-
+my_dictionary["Dictionary"] = "A collection of keys mapped to values"
 print("A Dictionary is:")
-# ...
+print("  " + my_dictionary["Dictionary"])
 
 # Once you're done, move on to 038_dict_operations.py
