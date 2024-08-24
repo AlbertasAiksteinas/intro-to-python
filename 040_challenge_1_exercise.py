@@ -1,4 +1,4 @@
-# Video alternative: https://vimeo.com/954334103/0aed500d39#t=1295
+"""# Video alternative: https://vimeo.com/954334103/0aed500d39#t=1295
 
 from lib.helpers import check_that_these_are_equal
 
@@ -62,3 +62,53 @@ check_that_these_are_equal(
 )
 
 # Once you're done, move on to 041_challenge_2_example.py
+"""
+from lib.helpers import check_that_these_are_equal
+
+def report_long_words(words):
+    # Step 1: Filter words longer than 10 characters and without hyphens
+    filtered_words = [word for word in words if len(word) > 10 and '-' not in word]
+    
+    # Step 2: Shorten words longer than 15 characters
+    shortened_words = [
+        word if len(word) <= 15 else word[:15] + '...' 
+        for word in filtered_words
+    ]
+    
+    # Step 3: Format the output string
+    if shortened_words:
+        result = "These words are quite long: " + ", ".join(shortened_words)
+    else:
+        result = "These words are quite long: "
+    
+    return result
+
+# Tests
+check_that_these_are_equal(
+    report_long_words([
+        'hello',
+        'nonbiological',
+        'Kay',
+        'this-is-a-long-word',
+        'antidisestablishmentarianism'
+    ]),
+    "These words are quite long: nonbiological, antidisestablis..."
+)
+
+check_that_these_are_equal(
+    report_long_words([
+        'cat',
+        'dog',
+        'rhinosaurus',
+        'rhinosaurus-rex',
+        'frog'
+    ]),
+    "These words are quite long: rhinosaurus"
+)
+
+check_that_these_are_equal(
+    report_long_words([
+        'cat'
+    ]),
+    "These words are quite long: "
+)

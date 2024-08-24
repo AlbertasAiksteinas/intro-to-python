@@ -1,4 +1,4 @@
-# Video alternative: https://vimeo.com/954334009/67af9910fc#t=1054
+"""# Video alternative: https://vimeo.com/954334009/67af9910fc#t=1054
 
 # So far you've spent a lot of time writing new programs.
 
@@ -112,3 +112,93 @@ def is_game_over(board):
 
 print("Game time!")
 play_game()
+"""
+def play_game(board_size=3):
+    board = [["." for _ in range(board_size)] for _ in range(board_size)]
+    player = "X"
+    while not is_game_over(board, board_size):
+        print(print_board(board))
+        print("It's " + player + "'s turn.")
+        
+        while True:
+            try:
+                row = int(input(f"Enter a row (0 to {board_size-1}): "))
+                column = int(input(f"Enter a column (0 to {board_size-1}): "))
+
+                if 0 <= row < board_size and 0 <= column < board_size:
+                    if board[row][column] == ".":
+                        break
+                    else:
+                        print("This cell is already taken. Try again.")
+                else:
+                    print(f"Invalid input. Please enter values between 0 and {board_size-1}.")
+            except ValueError:
+                print("Invalid input. Please enter an integer value.")
+
+        board = make_move(board, row, column, player)
+        if player == "X":
+            player = "O"
+        else:
+            player = "X"
+    
+    print(print_board(board))
+    print("Game over!")
+
+def print_board(board):
+    formatted_rows = []
+    for row in board:
+        formatted_rows.append(" ".join(row))
+    return "\n".join(formatted_rows)
+
+def make_move(board, row, column, player):
+    board[row][column] = player
+    return board
+
+def get_cells(board, coord_1, coord_2, coord_3):
+    return [
+        board[coord_1[0]][coord_1[1]],
+        board[coord_2[0]][coord_2[1]],
+        board[coord_3[0]][coord_3[1]]
+    ]
+
+def is_group_complete(board, coord_1, coord_2, coord_3):
+    cells = get_cells(board, coord_1, coord_2, coord_3)
+    return "." not in cells
+
+def are_all_cells_the_same(board, coord_1, coord_2, coord_3):
+    cells = get_cells(board, coord_1, coord_2, coord_3)
+    return cells[0] == cells[1] and cells[1] == cells[2]
+
+def is_game_over(board, board_size):
+    groups_to_check = []
+
+    # Rows
+    for i in range(board_size):
+        groups_to_check.append([(i, j) for j in range(board_size)])
+
+    # Columns
+    for j in range(board_size):
+        groups_to_check.append([(i, j) for i in range(board_size)])
+
+    # Diagonals
+    groups_to_check.append([(i, i) for i in range(board_size)])
+    groups_to_check.append([(i, board_size - 1 - i) for i in range(board_size)])
+
+    for group in groups_to_check:
+        if is_group_complete(board, group[0], group[1], group[2]):
+            if are_all_cells_the_same(board, group[0], group[1], group[2]):
+                return True
+
+    # Check for a draw (no more empty spaces)
+    for row in board:
+        if "." in row:
+            return False  # There's still space, so not a draw yet
+
+    return True  # No spaces left and no winner, so it's a draw
+
+# Test the game with a 3x3 board
+print("Game time!")
+play_game()
+
+# For a 5x5 board, call:
+# play_game(board_size=5)
