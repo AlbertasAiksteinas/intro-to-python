@@ -2,8 +2,8 @@
 
 # Start reading here:
 
-def just_return_it(num):
-  return num
+#def just_return_it(num):
+# return num
 
 # This is a function. A function is a reusable block of
 # code.
@@ -30,7 +30,7 @@ def just_return_it(num):
 
 # We call a function like this:
 
-just_return_it(4)
+#just_return_it(4)
 # Returns 4
 
 # In the code above, the argument `4` goes into the
@@ -39,8 +39,8 @@ just_return_it(4)
 
 # Want to see? Here, we can use `print` to show you:
 
-print("just_return_it(4) returns:")
-print(just_return_it(4))
+#print("just_return_it(4) returns:")
+#print(just_return_it(4))
 
 # @TASK: Run this program in the right-hand shell panel:
 #
@@ -61,3 +61,14 @@ print(just_return_it(4))
 # back.
 #
 # Now move on to 012_add_one.py
+def just_return_it(num):
+  return num
+num = 4 
+print(num)
+
+def just_return_it(num):
+  return num
+
+num = 4 
+print("just_return_it(4) returns:")
+print(just_return_it(num))
