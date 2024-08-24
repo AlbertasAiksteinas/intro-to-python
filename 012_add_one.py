@@ -2,17 +2,17 @@
 
 # Let's create a more useful function:
 
-def add_one(num):
-  return num + 1
+#def add_one(num):
+ # return num + 1
 
 # Here is how it used:
 
-add_one(6)
+#add_one(6)
 
 # And let's see it printed out:
 
-print("add_one(6) returns:")
-print(add_one(6))
+#print("add_one(6) returns:")
+#print(add_one(6))
 
 # @TASK: Run this code in the shell:
 #
@@ -23,3 +23,15 @@ print(add_one(6))
 # returns the result.
 
 # Now move on to 013_add_two.py
+def add_one():
+    # Ask the user for a number
+    num = int(input("Please enter a number: "))
+    
+    # Add 1 to the number
+    result = num + 1
+    
+    # Print the result
+    print(f"add_one({num}) returns: {result}")
+
+# Call the function
+add_one()

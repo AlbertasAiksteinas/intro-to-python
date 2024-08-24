@@ -12,6 +12,29 @@ from lib.helpers import check_that_these_are_equal
 
 # YOUR FUNCTION GOES BELOW THIS LINE
 
+# Function to add two numbers
+def add_numbers(num_a, num_b):
+    return num_a + num_b
+
+# Function to check if two values are equal
+def check_that_these_are_equal(value, expected):
+    if value == expected:
+        print(f"Test passed: {value} equals {expected}")
+    else:
+        print(f"Test failed: {value} does not equal {expected}")
+
+# Test the add_numbers function
+print("add_numbers(2, 3) is:")
+check_that_these_are_equal(
+    add_numbers(2, 3),
+    5
+)
+
+print("add_numbers(3, 5) is:")
+check_that_these_are_equal(
+    add_numbers(3, 5),
+    8
+)
 
 
 # YOUR FUNCTION GOES ABOVE THIS LINE
@@ -22,18 +45,5 @@ from lib.helpers import check_that_these_are_equal
 
 # Below is a test for your function.
 
-print("add_numbers(2, 3) is:")
-
-check_that_these_are_equal(
-  add_numbers(2, 3),
-  5
-)
-
-print("add_numbers(3, 5) is:")
-
-check_that_these_are_equal(
-  add_numbers(3, 5),
-  8
-)
 
 # When you're done, move on to 016_operators.py
